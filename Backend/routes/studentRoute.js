@@ -1,9 +1,9 @@
 import express from "express";
-
-// import { searchByUsername } from "../controllers/userController.js";
+import { getStudents } from "../controllers/studentController.js";
 
 const studentRouter = express.Router();
 
-// userRouter.get("/search/:username", searchByUsername);
+// admin endpoint
+studentRouter.get("/getstudents", getStudents)
 
 export default studentRouter;

@@ -3,6 +3,7 @@ import cors from "cors";
 import connectDB from "./dbConnection.js";
 
 // importing routers
+import studentRoute from "./routes/studentRoute.js"
 
 // importing middleware
 import verifyToken from "./middlewares/authMiddleware.js";
@@ -11,6 +12,7 @@ const app = express();
 
 // using express.json() multiware globally to all endpoints
 app.use(express.json());
+
 // enabling cors
 app.use(cors());
 
@@ -23,9 +25,10 @@ app.get("/health", (req, res) => {
 });
 
 // public routes
+app.use("/auth", studentRoute)
 
 // using middleware for protected routes
-app.use(verifyToken);
+// app.use(verifyToken);
 
 // private routes
 
