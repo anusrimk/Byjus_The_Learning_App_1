@@ -3,7 +3,7 @@ import cors from "cors";
 import connectDB from "./dbConnection.js";
 
 // importing routers
-import studentRoute from "./routes/studentRoute.js"
+import studentRoute from "./routes/userRoute.js"
 
 // importing middleware
 import verifyToken from "./middlewares/authMiddleware.js";

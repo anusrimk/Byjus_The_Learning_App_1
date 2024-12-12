@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const studentSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
     {
         name:{
             type: String,
@@ -37,5 +37,7 @@ const studentSchema = new mongoose.Schema(
 )
 
 // creating the user model
-const studentModel = mongoose.model("students", studentSchema);
-export default studentModel;
+
+// model(collection_name, schema_name)
+const userModel = mongoose.model("users", userSchema);
+export default userModel;
