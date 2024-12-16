@@ -3,7 +3,10 @@ import cors from "cors";
 import connectDB from "./dbConnection.js";
 
 // importing routers
-import studentRoute from "./routes/userRoute.js"
+import studentRouter from "./routes/userRoute.js";
+import homeRouter from "./routes/homeRouter.js";
+import courseRouter from "./routes/courseRouter.js";
+import subjectRouter from "./routes/subjectRouter.js";
 
 // importing middleware
 import verifyToken from "./middlewares/authMiddleware.js";
@@ -17,21 +20,26 @@ app.use(express.json());
 app.use(cors());
 
 // connecting to database
-connectDB();
+// connectDB();
 
 // creating routes
 app.get("/health", (req, res) => {
-    res.send("Server is running");
+  res.send("Server is running");
 });
 
 // public routes
-app.use("/auth", studentRoute)
+app.use("/auth", studentRouter);
 
 // using middleware for protected routes
 // app.use(verifyToken);
 
 // private routes
+app.use("/home", homeRouter);
+
+app.use("/courses", courseRouter);
+
+app.use("/subjects", subjectRouter);
 
 app.listen(8000, (req, red) => {
-    console.log("Server connected on port 8000");
+  console.log("Server connected on port 8000");
 });
