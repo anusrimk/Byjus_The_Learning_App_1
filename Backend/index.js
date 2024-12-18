@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 // connecting to database
-// connectDB();
+connectDB();
 
 // creating routes
 app.get("/health", (req, res) => {

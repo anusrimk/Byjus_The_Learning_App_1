@@ -26,7 +26,9 @@ const userSchema = new mongoose.Schema(
         },
         courses:{
             type: String,
-            enum: ["12th", "11th", "10th"]
+            ref : "courses",
+            enum: ["12th NEET", "12th JEE", "12th HSC"],
+            default : "12th NEET"
         },
         role:{
             type: String,

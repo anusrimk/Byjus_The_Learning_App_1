@@ -1,5 +1,5 @@
 import express from "express";
-import { getSubject } from "../controllers/subjectContoller.js";
+import { getSubject } from "../controllers/subjectController.js";
 
 const subjectRouter = express.Router();
 

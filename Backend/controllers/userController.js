@@ -1,11 +1,16 @@
-import mongoose from "mongoose";
 import bcrypt from "bcryptjs"
 import userModel from "../models/userModel.js";
 
 // admin
 export async function getUsers(req, res){
-    try {
-        const users = await userModel.find();
+  
+  try {
+    const users = await userModel.find();
+    console.log("Fetching users...");
+        if(!users){
+          console.log("No users");
+          return res.status(400).send({message : "No users"})
+        }
         res.status(200).send(users)
     } catch (error) {
         res.status(400).send({message : "Error : ", error})
@@ -19,7 +24,7 @@ export async function registerUser(req, res) {
 
         const existingUser = await userModel.findOne({username : user.username})
         if(existingUser){
-          return res.status(400).send({message : "User already exists"})
+          return res.status(400).send({message : "User with that username already exists"})
         }
 
         // generating salt and encrypting the password

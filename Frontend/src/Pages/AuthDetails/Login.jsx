@@ -1,11 +1,9 @@
 import { useState } from "react";
-import bg from "../assets/BG_Byju's.jpg";
+import bg from "../../assets/BG_Byju.jpg";
 import styles from "./Auth.module.css";
 
-function Register() {
+function Login() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
     username: "",
     password: "",
   });
@@ -19,19 +17,17 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("User Registered:", formData);
+    console.log("User Logged In:", formData);
 
     // Clear form
     setFormData({
-      name: "",
-      email: "",
       username: "",
       password: "",
     });
 
     // Send data to the server
-    fetch("http://localhost:8000/auth/register", {
-      method: "POST", 
+    fetch("http://localhost:8000/auth/login", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -40,7 +36,7 @@ function Register() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Message:", data);
-        // Redirect to login page
+        // Redirect to home page or wherever necessary
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -54,30 +50,6 @@ function Register() {
       </div>
       <div className={styles.form}>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Enter your full name"
-            required
-            autoComplete="off"
-          />
-
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-            required
-            autoComplete="off"
-          />
-
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -102,9 +74,9 @@ function Register() {
             autoComplete="off"
           />
 
-          <button type="submit">Register</button>
+          <button type="submit">Login</button>
           <p>
-            Already have an account? <a href="/login">Login here</a>
+            Don&apos;t have an account? <a href="/register">Register here</a>
           </p>
         </form>
       </div>
@@ -112,4 +84,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;
