@@ -30,3 +30,23 @@ export async function getAssignments(req, res){
         return res.status(500).send({message : "Internal Server Error"})
     }
 }
+
+// function to get all assignments in a subject
+export async function getAssignmentBySubject(req, res) {
+    try {
+        const {subject} = req.params;
+
+        if(subject===null || subject === undefined){
+            return res.status(400).send({message : "Assignment ID is required"});
+        }
+
+        const assignments = await assignmentModel.find({subject : subject})
+        if(!assignments || assignments.length === 0){
+            return res.status(404).send({message : "Assignments not found"});
+        }
+
+        res.status(200).send({message : "Assignments of subject found", assignments})
+    } catch (error) {
+        return res.status(500).send({message : "Internal Server Error"})
+    }
+}
