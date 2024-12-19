@@ -1,64 +1,94 @@
 .container {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    max-width: 800px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.profilePic {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profilePic img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.info {
+  flex: 2;
+  padding: 0 20px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.input {
+  padding: 5px;
+  font-size: 14px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.editButton,
+.saveButton {
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.editButton:hover,
+.saveButton:hover {
+  background-color: #0056b3;
+}
+
+.saveButton {
+  background-color: #28a745;
+}
+
+.saveButton:hover {
+  background-color: #218838;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
+
   .profilePic {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 20px;
   }
-  
-  .profilePic img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
+
   .info {
-    flex: 2;
-    padding: 0 20px;
+    padding: 0;
   }
-  
-  h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  p {
-    margin: 10px 0;
-    font-size: 16px;
-    color: #555;
-  }
-  
+
   .input {
-    padding: 5px;
-    font-size: 14px;
-    margin-right: 10px;
+    width: 100%;
   }
-  
-  .editButton,
-  .saveButton {
-    padding: 5px 10px;
-    font-size: 14px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .editButton:hover,
-  .saveButton:hover {
-    background-color: #0056b3;
-  }
-  
+}

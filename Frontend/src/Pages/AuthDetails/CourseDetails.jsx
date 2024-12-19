@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./CourseDetails.module.css"
 
 function CourseDetails() {
   const nav = useNavigate();
