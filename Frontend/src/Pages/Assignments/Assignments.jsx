@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {Link} from "react-router-dom"
 import styles from "./Assignments.module.css";
 
 function Assignments() {
@@ -31,6 +32,7 @@ function Assignments() {
                 <p><strong>Subject:</strong> {assignment.subject}</p>
                 <p><strong>Total Questions:</strong> {assignment.numOfQues}</p>
                 <p><strong>Completed Questions:</strong> {assignment.completedQues}</p>
+                <Link to={`/assignments/${assignment._id}`}><p><strong>View Assignment</strong></p></Link>
               </div>
             ))
           ) : (
