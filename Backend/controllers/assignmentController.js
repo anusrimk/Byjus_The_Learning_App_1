@@ -32,7 +32,7 @@ export async function getAssignments(req, res){
 }
 
 // function to get all assignments in a subject
-export async function getAssignmentBySubject(req, res) {
+export async function getAssignmentsBySubject(req, res) {
     try {
         const {subject} = req.params;
 
@@ -46,6 +46,26 @@ export async function getAssignmentBySubject(req, res) {
         }
 
         res.status(200).send({message : "Assignments of subject found", assignments})
+    } catch (error) {
+        return res.status(500).send({message : "Internal Server Error"})
+    }
+}
+
+// function to get a single assignment
+export async function getAssigment(req, res){
+    try {
+        const {assignmentId} = req.params;
+
+        if(!assignmentId || assignmentId===undefined){
+            return res.status(400).send({message : "Assignment ID invalid or not provided"})
+        }
+
+        const assignment = await assignmentModel.findById(assignmentId);
+        if(!assignment){
+            return res.status(404).send({message : "Assignment not found"})
+        }
+
+        res.status(200).send({message : "Assignment retrieved",assignment})
     } catch (error) {
         return res.status(500).send({message : "Internal Server Error"})
     }

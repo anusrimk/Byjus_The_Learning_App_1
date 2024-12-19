@@ -1,6 +1,6 @@
 import express from "express";
 
-import {addAssignment, getAssignmentBySubject, getAssignments} from "../controllers/assignmentController.js"
+import {addAssignment, getAssignmentsBySubject, getAssignments, getAssigment} from "../controllers/assignmentController.js"
 
 const assignmentRouter = express.Router();
 
@@ -11,6 +11,9 @@ assignmentRouter.post("/add", addAssignment);
 assignmentRouter.get("/getAssignments", getAssignments)
 
 // route to get assignments by subject
-assignmentRouter.get("/getAssignments/:subject", getAssignmentBySubject)
+assignmentRouter.get("/getAssignments/:subject", getAssignmentsBySubject)
+
+// route to get a single assignment
+assignmentRouter.get("/getAssignment/:assignmentId", getAssigment)
 
 export default assignmentRouter;
