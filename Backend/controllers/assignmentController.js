@@ -5,13 +5,27 @@ export async function addAssignment(req, res) {
     try {
         const body = req.body;
 
-        const assignment = assignmentModel.create(body);
+        const assignment = await assignmentModel.create(body);
         if(!assignment){
             return res.status(400).send({message : "Error creating assignment"}
             )
         }
 
         res.status(201).send({message : "Assignment added"});
+    } catch (error) {
+        return res.status(500).send({message : "Internal Server Error"})
+    }
+}
+
+// function to get all assignments
+export async function getAssignments(req, res){
+    try {
+        const assignments = await assignmentModel.find()
+        if(!assignments){
+            return res.status(404).send({message : "Assignments not found"});
+        }
+
+        res.status(200).send({message : "Assignments retrieved", assignments})
     } catch (error) {
         return res.status(500).send({message : "Internal Server Error"})
     }
