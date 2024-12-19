@@ -6,6 +6,7 @@ import Login from "./Pages/AuthDetails/Login";
 import CourseDetails from "./Pages/AuthDetails/CourseDetails";
 import ProfileDisplay from "./Pages/Profile/ProfileDisplay";
 import Homepage from "./Pages/Dashboard/Homepage";
+import Assignments from "./Pages/Assignments/Assignments"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/course" element={<CourseDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<ProfileDisplay />} />
+          <Route path="/assignments" element={<Assignments />} />
 
           {/* test routes */}
           <Route path="/about" element={<h1>About</h1>} />

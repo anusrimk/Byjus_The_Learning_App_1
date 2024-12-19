@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Homepage.module.css";
+import {Link} from 'react-router-dom'
 
 function Homepage() {
   return (
@@ -8,7 +9,9 @@ function Homepage() {
         <div className={styles.bentoGrid}>
           <div className={styles.box}>
             <h3>Pending Assignments</h3>
-            <p>3 assignments are due this week.</p>
+            <Link to="/assignments">
+              <p>Check all your assignments</p>
+            </Link>
           </div>
           <div className={styles.box}>
             <h3>Upcoming Tests</h3>
