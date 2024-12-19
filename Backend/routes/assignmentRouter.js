@@ -1,6 +1,6 @@
 import express from "express";
 
-import {addAssignment, getAssignmentsBySubject, getAssignments, getAssigment} from "../controllers/assignmentController.js"
+import {addAssignment, getAssignmentsBySubject, getAssignments, getAssigment, changeQuestionStatus} from "../controllers/assignmentController.js"
 
 const assignmentRouter = express.Router();
 
@@ -15,5 +15,8 @@ assignmentRouter.get("/getAssignments/:subject", getAssignmentsBySubject)
 
 // route to get a single assignment
 assignmentRouter.get("/getAssignment/:assignmentId", getAssigment)
+
+// route to change a question completed status
+assignmentRouter.put("/updateQuestion/:assignmentId", changeQuestionStatus)
 
 export default assignmentRouter;

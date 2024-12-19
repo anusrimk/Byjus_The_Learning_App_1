@@ -70,3 +70,44 @@ export async function getAssigment(req, res){
         return res.status(500).send({message : "Internal Server Error"})
     }
 }
+
+// function to change a question's completed status
+export async function changeQuestionStatus(req, res) {
+    try {
+      const { assignmentId } = req.params; // Extract assignment ID from the request parameters
+      const { serialNum, isCompleted } = req.body; // Extract serialNum and isCompleted from the request body
+  
+      // Validate required data
+      if (!assignmentId || serialNum === undefined || isCompleted === undefined) {
+        return res.status(400).send({ message: "Invalid data provided" });
+      }
+  
+      // Find the assignment by ID
+      const assignment = await assignmentModel.findById(assignmentId);
+      if (!assignment) {
+        return res.status(404).send({ message: "Assignment not found" });
+      }
+  
+      // Find the specific question by serial number
+      const question = assignment.questions.find((q) => q.serialNum === serialNum);
+      if (!question) {
+        return res.status(404).send({ message: "Question not found" });
+      }
+  
+      // Update the isCompleted field
+      question.isCompleted = isCompleted;
+  
+      // Save the updated assignment
+      await assignment.save();
+  
+      // Send a success response
+      res.status(200).send({
+        message: "Question status updated successfully",
+        question,
+      });
+    } catch (error) {
+      console.error("Error updating question status:", error);
+      return res.status(500).send({ message: "Internal Server Error" });
+    }
+  }
+  

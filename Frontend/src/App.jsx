@@ -8,6 +8,7 @@ import ProfileDisplay from "./Pages/Profile/ProfileDisplay";
 import Homepage from "./Pages/Dashboard/Homepage";
 import Assignments from "./Pages/Assignments/Assignments"
 import Attempting from "./Pages/Assignments/Attempting";
+import Results from "./Pages/Assignments/Results";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/profile" element={<ProfileDisplay />} />
           <Route path="/assignments" element={<Assignments />} />
           <Route path="/assignments/:assignmentId" element={<Attempting />} />
+          <Route path="/results" element={<Results />} />
 
           {/* test routes */}
           <Route path="/about" element={<h1>About</h1>} />
