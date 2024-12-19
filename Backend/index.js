@@ -10,6 +10,7 @@ import subjectRouter from "./routes/subjectRouter.js";
 
 // importing middleware
 import verifyToken from "./middlewares/authMiddleware.js";
+import assignmentRouter from "./routes/assignmentRouter.js";
 
 const app = express();
 
@@ -39,6 +40,8 @@ app.use("/home", homeRouter);
 app.use("/courses", courseRouter);
 
 app.use("/subjects", subjectRouter);
+
+app.use("/assignments", assignmentRouter);
 
 app.listen(8000, (req, red) => {
   console.log("Server connected on port 8000");
