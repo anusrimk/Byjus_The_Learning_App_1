@@ -17,3 +17,21 @@ export async function getSubject(req, res) {
     res.status(500).send({ message: "Error :", error });
   }
 }
+
+// function to create a subject
+export async function createSubject(req, res) {
+  try {
+    const subject = req.body;
+    if (subject === undefined || subject === null) {
+      return res.status(404).send({ message: "Subject is required" });
+    }
+
+    const sub = await subjectModel.create(subject);
+    if(!sub){
+      return res.status(400).send({ message: "Subject not created" });
+    }
+    return res.status(201).send({sub, message : "Subject added succesfully"});
+  } catch (error) {
+    res.status(500).send({ message: "Error :", error });
+  }
+}
