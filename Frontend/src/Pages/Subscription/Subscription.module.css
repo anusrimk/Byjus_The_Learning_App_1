@@ -1,0 +1,215 @@
+.container {
+    max-width: 1400px;
+    margin: 4rem auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    min-height: 70vh;
+  }
+  
+  .subscriptionBox {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 600px;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(74, 63, 125, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .subscriptionBox::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(124, 113, 179, 0.05), rgba(74, 63, 125, 0.05));
+    z-index: -1;
+  }
+  
+  .subscriptionBox:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(74, 63, 125, 0.15);
+  }
+  
+  .details {
+    flex: 1;
+  }
+  
+  .name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #4a3f7d, #7c71b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+  }
+  
+  .name::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, #7c71b3, #4a3f7d);
+    border-radius: 2px;
+  }
+  
+  .description {
+    font-size: 1.25rem;
+    color: #4a3f7d;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+  
+  .features {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  
+  .features li {
+    font-size: 1.1rem;
+    color: #2d2b4a;
+    padding: 1rem 1.5rem;
+    background: #f8f7ff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+  }
+  
+  .features li::before {
+    content: '✓';
+    margin-right: 1rem;
+    color: #7c71b3;
+    font-weight: bold;
+  }
+  
+  .features li:hover {
+    background: #ebe9ff;
+    transform: translateX(4px);
+  }
+  
+  .priceSection {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #f0f0f7;
+  }
+  
+  .price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d2b4a;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .subscribeButton {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #7c71b3, #4a3f7d);
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .subscribeButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 63, 125, 0.2);
+  }
+  
+  /* Pro Wizard specific styling */
+  .subscriptionBox:nth-child(2) {
+    background: linear-gradient(135deg, #4a3f7d, #7c71b3);
+  }
+  
+  .subscriptionBox:nth-child(2) .name {
+    background: linear-gradient(135deg, #ffffff, #f0f0f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .subscriptionBox:nth-child(2) .name::after {
+    background: #ffffff;
+  }
+  
+  .subscriptionBox:nth-child(2) .description,
+  .subscriptionBox:nth-child(2) .price {
+    color: #ffffff;
+  }
+  
+  .subscriptionBox:nth-child(2) .features li {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+  
+  .subscriptionBox:nth-child(2) .features li::before {
+    color: #ffffff;
+  }
+  
+  .subscriptionBox:nth-child(2) .features li:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .subscriptionBox:nth-child(2) .priceSection {
+    border-top-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .subscriptionBox:nth-child(2) .subscribeButton {
+    background: white;
+    color: #4a3f7d;
+  }
+  
+  @media (max-width: 1200px) {
+    .container {
+      padding: 1.5rem;
+      gap: 2rem;
+    }
+  
+    .subscriptionBox {
+      padding: 2.5rem;
+      min-height: 550px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+      margin: 2rem auto;
+    }
+  
+    .subscriptionBox {
+      padding: 2rem;
+      min-height: auto;
+    }
+  
+    .name {
+      font-size: 2rem;
+    }
+  
+    .description {
+      font-size: 1.1rem;
+    }
+  
+    .price {
+      font-size: 2.5rem;
+    }
+  
+    .subscribeButton {
+      padding: 1rem 1.5rem;
+      font-size: 1.1rem;
+    }
+  }
