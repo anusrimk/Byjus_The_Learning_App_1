@@ -1,0 +1,38 @@
+.chatRoom{
+    margin: "0 auto";
+    padding: "20px";
+    max-width: "400px";
+    border: "1px solid #ccc";
+    border-radius: "8px";
+  }
+  .chatBox{
+    height: "300px";
+    overflow-y: "scroll";
+    border: "1px solid #ddd";
+    padding: "10px";
+    margin-bottom: "10px";
+  }
+  .message{
+    margin-bottom: "8px";
+    padding: "5px";
+    background-color: "#f4f4f8";
+    border-radius: "5px";
+  }
+  .inputContainer {
+    display: "flex";
+  }
+  input {
+    flex: 1;
+    padding: "10px";
+    border: "1px solid #ccc";
+    border-radius: "4px";
+    margin-right: "10px";
+  }
+  button {
+    padding: "10px 20px";
+    background-color: "#007BFF";
+    color: "#fff";
+    border: "none";
+    border-radius: "4px";
+    cursor: "pointer";
+  }

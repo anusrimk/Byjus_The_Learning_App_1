@@ -12,6 +12,7 @@ import Results from "./Pages/Assignments/Results";
 import Subscription from "./Pages/Subscription/Subscription";
 import VideoLanding from "./Pages/VideoLectures/VideosLanding";
 import VideoWatching from "./Pages/VideoLectures/VideosWatching";
+import ChatRoom from "./Pages/ChatRoom/Chatroom";
 
 import { UserProvider } from "./context/UserContext";
 
@@ -33,7 +34,7 @@ function App() {
           <Route path="/videolanding" element={<VideoLanding />} />
           {/* <Route path="/video/:videoId" element={<VideoWatching />} /> */}
           <Route path="/videowatching" element={<VideoWatching />} />
-
+          <Route path="/chat" element={<ChatRoom />} />
 
           {/* test routes */}
           <Route path="/about" element={<h1>About</h1>} />

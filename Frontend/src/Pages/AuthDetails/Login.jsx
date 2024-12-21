@@ -7,22 +7,42 @@ import styles from "./Auth.module.css";
 function Login() {
   const { login } = useUser();
   const [formData, setFormData] = useState({ username: "", password: "" });
-  const nav = useNavigate()
+  const [error, setError] = useState("");
+  const nav = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("User Logged In:", formData);
 
-    login({ username: formData.username });
+    try {
+      const response = await fetch("http://localhost:8000/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    // Clear form
-    setFormData({ username: "", password: "" });
+      if (response.ok) {
+        const userData = await response.json();
 
-    nav("/homepage")
+        // Log in the user and store complete details
+        login(userData);
+
+        // Clear form
+        setFormData({ username: "", password: "" });
+
+        // Navigate to homepage
+        nav("/homepage");
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || "Login failed");
+      }
+    } catch (err) {
+      console.error("Error during login:", err);
+      setError("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -53,6 +73,7 @@ function Login() {
             required
           />
           <button type="submit">Login</button>
+          {error && <p className={styles.error}>{error}</p>}
         </form>
       </div>
     </section>

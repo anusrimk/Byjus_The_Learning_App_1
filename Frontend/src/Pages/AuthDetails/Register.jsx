@@ -20,11 +20,17 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  
+    // Validate that all fields are filled
+    if (!formData.name || !formData.email || !formData.username || !formData.password) {
+      alert("Please fill in all fields");
+      return;
+    }
 
-    // Save user data to context
-    login({ name: formData.name, username: formData.username });
+    // Pass the full formData to login
+    login(formData);
 
-    // Redirect to course page
+    // Navigate to the course selection page
     nav("/course");
   };
 
