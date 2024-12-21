@@ -1,94 +1,104 @@
-.container {
+.profileContainer {
   display: flex;
-  align-items: center;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-  max-width: 800px;
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.profilePic {
-  flex: 1;
+.profileLeft {
+  flex: 0 0 250px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  padding: 1rem;
 }
 
-.profilePic img {
-  width: 120px;
-  height: 120px;
+.profileCircle {
+  width: 150px;
+  height: 150px;
+  background-color: #e6e6fa;
   border-radius: 50%;
-  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #483d8b;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.info {
-  flex: 2;
-  padding: 0 20px;
+.profileName {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #483d8b;
+  text-align: center;
+  margin: 1rem 0;
 }
 
-h2 {
-  margin: 0;
-  font-size: 24px;
-  color: #333;
+.profileRight {
+  flex: 1;
+  padding: 1rem 2rem;
 }
 
-p {
-  margin: 10px 0;
-  font-size: 16px;
-  color: #555;
+.infoBox {
+  background-color: #f8f8ff;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  border: 1px solid #e6e6fa;
 }
 
-.input {
-  padding: 5px;
-  font-size: 14px;
-  margin-right: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 200px;
+.infoBox:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.editButton,
-.saveButton {
-  padding: 5px 10px;
-  font-size: 14px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
+.infoBox h3 {
+  color: #483d8b;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.editIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
   cursor: pointer;
-  margin-left: 10px;
+  color: #483d8b;
+  opacity: 0.6;
+  transition: opacity 0.2s;
 }
 
-.editButton:hover,
-.saveButton:hover {
-  background-color: #0056b3;
+.editIcon:hover {
+  opacity: 1;
 }
 
-.saveButton {
-  background-color: #28a745;
+.coursesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.saveButton:hover {
-  background-color: #218838;
+.courseItem {
+  background-color: white;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #e6e6fa;
 }
 
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+/* Adding transitions for smooth hover effects */
+.infoBox,
+.editIcon,
+.courseItem {
+  transition: all 0.2s ease-in-out;
+}
 
-  .profilePic {
-    margin-bottom: 20px;
-  }
-
-  .info {
-    padding: 0;
-  }
-
-  .input {
-    width: 100%;
-  }
+.courseItem:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }

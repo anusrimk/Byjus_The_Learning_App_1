@@ -26,6 +26,27 @@ export async function getCourseById(req, res) {
   }
 }
 
+// fetches a single course by name
+export async function getCourseByName(req, res) {
+  try {
+    const { name } = req.params; // Extract the name from req.params
+
+    if (!name) {
+      return res.status(400).send({ message: "Course name is required" }); // Validate name
+    }
+
+    const course = await courseModel.findOne({ name }); // Properly use name in the query
+
+    if (course) {
+      return res.status(200).send(course); // Return the course if found
+    }
+
+    return res.status(404).send({ message: "Course not found" }); // Handle course not found
+  } catch (error) {
+    return res.status(500).send({ message: "Error occurred", error }); // Handle server errors
+  }
+}
+
 // creates a new course
 export async function createCourse(req, res) {
   try {

@@ -3,8 +3,8 @@ import { getSubject, createSubject } from "../controllers/subjectController.js";
 
 const subjectRouter = express.Router();
 
-subjectRouter.get("/", getSubject);
+subjectRouter.get("/:subjectId", getSubject);
 
-subjectRouter.post("/addsubject", createSubject)
+subjectRouter.post("/addSubject", createSubject)
 
 export default subjectRouter;

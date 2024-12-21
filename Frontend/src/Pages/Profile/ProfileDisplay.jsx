@@ -1,92 +1,107 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ProfileDisplay.module.css";
+import { useUser } from "../../context/UserContext";
 
-function ProfileDisplay() {
-  const [profile, setProfile] = useState(null);
-  const [username, setUsername] = useState("testuser"); // Replace with dynamic username (e.g., from login state)
-  const [newPassword, setNewPassword] = useState("");
-  const [editMode, setEditMode] = useState(false);
+const ProfileDisplay = () => {
+  const { user } = useUser();
+  const [currUser, setCurrUser] = useState({});
 
-  // Fetch user details
-  useEffect(() => {
-    fetch(`http://localhost:8000/auth/getuser?username=${username}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => setProfile(data))
-      .catch((error) => console.error("Error fetching profile:", error));
-  }, [username]);
-
-  // Handle password update
-  const handlePasswordUpdate = () => {
-    if (!newPassword) {
-      alert("Password cannot be empty!");
-      return;
-    }
-
-    fetch("http://localhost:8000/auth/updatePassword", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username: profile.username, password: newPassword }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        alert(data.message || "Password updated successfully!");
-        setNewPassword("");
-        setEditMode(false);
-      })
-      .catch((error) => console.error("Error updating password:", error));
+  const getInitials = (name = "") => {
+    return name
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase();
   };
 
-  if (!profile) {
-    return <p>Loading...</p>;
-  }
+  useEffect(() => {
+    if (user?.username) {
+      fetch(`http://localhost:8000/auth/getuser/${user.username}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          setCurrUser(data);
+        })
+        .catch((err) => console.error(err));
+    }
+  }, [user.username]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.profilePic}>
-        <img src={profile.profilePic} alt="Profile" />
+    <div className={styles.profileContainer}>
+      {/* Left Section */}
+      <div className={styles.profileLeft}>
+        <div className={styles.profileCircle}>
+          {currUser.name ? getInitials(currUser.name) : "N/A"}
+        </div>
+        <h2 className={styles.profileName}>
+          {currUser.name || "No Name Provided"}
+        </h2>
       </div>
-      <div className={styles.info}>
-        <h2>{profile.name}</h2>
-        <p>
-          <strong>Username:</strong> {profile.username}
-        </p>
-        <p>
-          <strong>Password:</strong>{" "}
-          {editMode ? (
-            <>
-              <input
-                type="password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                className={styles.input}
-                placeholder="Enter new password"
-              />
-              <button onClick={handlePasswordUpdate} className={styles.saveButton}>
-                Save
-              </button>
-            </>
-          ) : (
-            <>
-              ********
-              <button onClick={() => setEditMode(true)} className={styles.editButton}>
-                Edit Password
-              </button>
-            </>
-          )}
-        </p>
-        <p>
-          <strong>Courses:</strong> {profile.courses.join(", ")}
-        </p>
+
+      {/* Right Section */}
+      <div className={styles.profileRight}>
+        {/* Username Box */}
+        <div className={styles.infoBox}>
+          <h3>Username</h3>
+          <p>{currUser.username || "No Username Provided"}</p>
+          <svg
+            className={styles.editIcon}
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+        </div>
+
+        {/* Password Box */}
+        <div className={styles.infoBox}>
+          <h3>Password</h3>
+          <p>********</p> {/* Password is typically hidden */}
+          <svg
+            className={styles.editIcon}
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+        </div>
+
+        {/* Courses Box */}
+        <div className={styles.infoBox}>
+          <h3>Course</h3>
+          <p>{currUser.courses}</p>
+          <svg
+            className={styles.editIcon}
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+        </div>  
       </div>
     </div>
   );
-}
+};
 
 export default ProfileDisplay;

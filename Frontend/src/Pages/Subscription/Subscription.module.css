@@ -9,7 +9,7 @@
   }
   
   .subscriptionBox {
-    background: white;
+    background: #eeecfa;
     border-radius: 24px;
     padding: 3rem;
     display: flex;
@@ -41,7 +41,7 @@
   }
   
   .name {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     background: linear-gradient(135deg, #4a3f7d, #7c71b3);
@@ -62,7 +62,7 @@
   }
   
   .description {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: #4a3f7d;
     margin-bottom: 2.5rem;
     line-height: 1.6;
@@ -72,11 +72,11 @@
     list-style: none;
     padding: 0;
     display: grid;
-    gap: 1.25rem;
+    gap: 1.2rem;
   }
   
   .features li {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #2d2b4a;
     padding: 1rem 1.5rem;
     background: #f8f7ff;
@@ -105,7 +105,7 @@
   }
   
   .price {
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #2d2b4a;
     margin-bottom: 1.5rem;
@@ -115,7 +115,7 @@
   .subscribeButton {
     width: 100%;
     padding: 1.25rem 2rem;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: white;
     background: linear-gradient(135deg, #7c71b3, #4a3f7d);

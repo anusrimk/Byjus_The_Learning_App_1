@@ -58,6 +58,10 @@
   font-weight: 700;
 }
 
+.box ul{
+  list-style: none;
+}
+
 .box p {
   color: #4a3f7d;
   line-height: 1.5;

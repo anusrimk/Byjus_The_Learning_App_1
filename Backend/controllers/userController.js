@@ -13,8 +13,29 @@ export async function getUsers(req, res){
         }
         res.status(200).send(users)
     } catch (error) {
-        res.status(400).send({message : "Error : ", error})
+        res.status(500).send({message : "Error : ", error})
     }
+}
+
+// getting a single user by user
+export async function getUser(req, res) {
+  try {
+    const { username } = req.params; 
+
+    if (!username) {
+      return res.status(400).send({ message: "User ID is required" });
+    }
+
+    const user = await userModel.findOne({username}); 
+
+    if (!user) {
+      return res.status(404).send({ message: "User not found" }); 
+    }
+
+    return res.status(200).send(user);
+  } catch (error) {
+    return res.status(500).send({ message: "Error occurred", error });
+  }
 }
 
 //creating a user 

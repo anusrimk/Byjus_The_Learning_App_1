@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 import bg from "../../assets/BG_Byju.jpg";
 import styles from "./Auth.module.css";
 
 function Register() {
   const nav = useNavigate();
+  const { login } = useUser();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,26 +15,16 @@ function Register() {
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Save user to localStorage
-    localStorage.setItem("user", JSON.stringify(formData));
+    // Save user data to context
+    login({ name: formData.name, username: formData.username });
 
-    // Clear form and redirect
-    setFormData({
-      name: "",
-      email: "",
-      username: "",
-      password: "",
-    });
-
+    // Redirect to course page
     nav("/course");
   };
 
@@ -52,9 +44,7 @@ function Register() {
             onChange={handleChange}
             placeholder="Enter your full name"
             required
-            autoComplete="off"
           />
-
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -64,9 +54,7 @@ function Register() {
             onChange={handleChange}
             placeholder="Enter your email"
             required
-            autoComplete="off"
           />
-
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -76,9 +64,7 @@ function Register() {
             onChange={handleChange}
             placeholder="Enter your username"
             required
-            autoComplete="off"
           />
-
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -88,13 +74,8 @@ function Register() {
             onChange={handleChange}
             placeholder="Enter your password"
             required
-            autoComplete="off"
           />
-
           <button type="submit">Register</button>
-          <p>
-            Already have an account? <a href="/login">Login here</a>
-          </p>
         </form>
       </div>
     </section>

@@ -10,10 +10,14 @@ import Assignments from "./Pages/Assignments/Assignments"
 import Attempting from "./Pages/Assignments/Attempting";
 import Results from "./Pages/Assignments/Results";
 import Subscription from "./Pages/Subscription/Subscription";
+import VideoLanding from "./Pages/VideoLectures/VideosLanding";
+import VideoWatching from "./Pages/VideoLectures/VideosWatching";
+
+import { UserProvider } from "./context/UserContext";
 
 function App() {
   return (
-    <>
+    <UserProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Homepage/>} />
@@ -26,13 +30,17 @@ function App() {
           <Route path="/assignments/:assignmentId" element={<Attempting />} />
           <Route path="/results" element={<Results />} />
           <Route path="/subscription" element={<Subscription />} />
+          <Route path="/videolanding" element={<VideoLanding />} />
+          {/* <Route path="/video/:videoId" element={<VideoWatching />} /> */}
+          <Route path="/videowatching" element={<VideoWatching />} />
+
 
           {/* test routes */}
           <Route path="/about" element={<h1>About</h1>} />
           <Route path="/contact" element={<h1>Contact</h1>} />
         </Routes>
       </Router>
-    </>
+    </UserProvider>
   );
 }
 

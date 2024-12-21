@@ -1,10 +1,12 @@
 import express from "express";
-import { getUsers, registerUser, updateUserDetails, deleteUser, updatePassword } from "../controllers/userController.js";
+import { getUsers, registerUser, updateUserDetails, deleteUser, updatePassword, getUser } from "../controllers/userController.js";
 
 const userRouter = express.Router();
 
 // admin endpoint
 userRouter.get("/getusers", getUsers)
+
+userRouter.get("/getuser/:username", getUser)
 
 userRouter.post("/register", registerUser)
 

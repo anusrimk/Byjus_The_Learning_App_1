@@ -1,46 +1,28 @@
 import { useState } from "react";
+import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 import bg from "../../assets/BG_Byju.jpg";
 import styles from "./Auth.module.css";
 
 function Login() {
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
+  const { login } = useUser();
+  const [formData, setFormData] = useState({ username: "", password: "" });
+  const nav = useNavigate()
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("User Logged In:", formData);
 
-    // Clear form
-    setFormData({
-      username: "",
-      password: "",
-    });
+    login({ username: formData.username });
 
-    // Send data to the server
-    fetch("http://localhost:8000/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Message:", data);
-        // Redirect to home page or wherever necessary
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    // Clear form
+    setFormData({ username: "", password: "" });
+
+    nav("/homepage")
   };
 
   return (
@@ -59,9 +41,7 @@ function Login() {
             onChange={handleChange}
             placeholder="Enter your username"
             required
-            autoComplete="off"
           />
-
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -71,13 +51,8 @@ function Login() {
             onChange={handleChange}
             placeholder="Enter your password"
             required
-            autoComplete="off"
           />
-
           <button type="submit">Login</button>
-          <p>
-            Don&apos;t have an account? <a href="/register">Register here</a>
-          </p>
         </form>
       </div>
     </section>
